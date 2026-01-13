@@ -1,0 +1,6 @@
+---
+skip: "This test is skipped for demonstration purposes"
+---
+- provider: python
+  type: assert
+  expression: "1 == 1"

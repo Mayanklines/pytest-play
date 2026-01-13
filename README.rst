@@ -823,6 +823,7 @@ defined on the ``test_XXX.yml`` with the following format::
     test_data:
       - username: foo
       - username: bar
+    skip: "reason for skipping"
     ---
     # omitted scenario steps in this example...
 
@@ -837,7 +838,11 @@ Option details:
   the example above will be executed twice (one time with "foo" username and another time
   with "bar")
 
-New options will be added in the next feature (e.g., skip scenarios, xfail, xpass, etc).
+* ``skip``, you can skip the entire scenario by providing a reason string. If set to ``true``,
+  the scenario will be skipped without a specific reason. This is useful for temporarily
+  disabling tests or marking them as work in progress.
+
+New options will be added in the next feature (e.g., xfail, xpass, etc).
 
 Examples
 --------

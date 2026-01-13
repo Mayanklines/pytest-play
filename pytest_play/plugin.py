@@ -105,6 +105,16 @@ class YAMLFile(pytest.File):
         if markers:
             for item in values:
                 self._add_markers(item, markers)
+        if metadata and 'skip' in metadata:
+            skip_value = metadata['skip']
+            if isinstance(skip_value, str):
+                reason = skip_value
+            elif skip_value is True:
+                reason = None
+            else:
+                reason = str(skip_value)
+            for item in values:
+                item.add_marker(pytest.mark.skip(reason=reason))
         values.sort(key=lambda item: item.reportinfo()[:2])
         return values
 

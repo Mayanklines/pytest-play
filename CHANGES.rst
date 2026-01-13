@@ -4,6 +4,10 @@ Changelog
 2.3.2 (unreleased)
 ------------------
 
+Features:
+
+- add ``skip`` metadata option to skip YAML tests with optional reason
+
 - Nothing changed yet.
 
 

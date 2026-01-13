@@ -61,3 +61,37 @@ markers:
     result = testdir.runpytest('-m marker1 --strict')
 
     result.assert_outcomes(passed=1)
+
+
+def test_autoexecute_yml_skip(testdir):
+    yml_file = testdir.makefile(".yml", """
+---
+skip: "Test is skipped for demonstration"
+---
+- provider: python
+  type: assert
+  expression: "1"
+    """)
+    assert yml_file.basename.startswith('test_')
+    assert yml_file.basename.endswith('.yml')
+
+    result = testdir.runpytest()
+
+    result.assert_outcomes(skipped=1)
+
+
+def test_autoexecute_yml_skip_boolean(testdir):
+    yml_file = testdir.makefile(".yml", """
+---
+skip: true
+---
+- provider: python
+  type: assert
+  expression: "1"
+    """)
+    assert yml_file.basename.startswith('test_')
+    assert yml_file.basename.endswith('.yml')
+
+    result = testdir.runpytest()
+
+    result.assert_outcomes(skipped=1)
